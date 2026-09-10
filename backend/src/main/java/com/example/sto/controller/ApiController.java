@@ -1,39 +1,30 @@
 package com.example.sto.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000") // Разрешаем запросы с React
 public class ApiController {
 
-    // Простой GET-запрос
-    @GetMapping("/hello")
-    public String hello() {
-        return "Привет из Spring Boot!";
-    }
-
-    // Возвращаем JSON-объект
     @GetMapping("/info")
-    public Map<String, String> info() {
-        return Map.of(
-                "name", "Sto",
-                "version", "1.0.0",
-                "status", "online"
-        );
+    public Map<String, String> getStoInfo() {
+        Map<String, String> info = new HashMap<>();
+        info.put("name", "СТО Вязовский");
+        info.put("schedule", "Удобный график работы");
+        info.put("reviewsCount", "250+");
+        info.put("rating", "5.0");
+        return info;
     }
 
-    // Возвращаем список
-    @GetMapping("/users")
-    public List<Map<String, String>> users() {
-        return List.of(
-                Map.of("id", "1", "name", "Иван", "email", "ivan@example.com"),
-                Map.of("id", "2", "name", "Мария", "email", "maria@example.com"),
-                Map.of("id", "3", "name", "Петр", "email", "petr@example.com")
-        );
+    @GetMapping("/services")
+    public String[] getServices() {
+        return new String[]{"Диагностика", "Ремонт", "Записаться", "Отзывы"};
     }
 }
