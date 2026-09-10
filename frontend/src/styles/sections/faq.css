@@ -1,0 +1,56 @@
+/* ===== СЕКЦИЯ FAQ ===== */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 900px;
+}
+
+.faq-item {
+    padding: 22px 28px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(78, 195, 217, 0.35);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.faq-item.open {
+    border-color: rgba(78, 195, 217, 0.5);
+    background-color: rgba(78, 195, 217, 0.06);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    color: #4ec3d9;
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.faq-answer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(78, 195, 217, 0.2);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+}

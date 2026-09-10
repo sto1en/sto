@@ -1,0 +1,275 @@
+/* ===== СЕКЦИЯ ЗАПИСИ ===== */
+.booking-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.booking-left h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.booking-sub {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 36px;
+    line-height: 1.5;
+    max-width: 480px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+}
+
+.booking-form input {
+    padding: 18px 24px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.booking-form input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.booking-form input:focus {
+    border-color: #4ec3d9;
+    background-color: rgba(78, 195, 217, 0.06);
+    box-shadow: 0 0 0 3px rgba(78, 195, 217, 0.12);
+}
+
+.booking-form .btn-primary {
+    margin-top: 8px;
+    padding: 22px 28px;
+    background-color: #ffffff;
+    color: #1f5d6b;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+    justify-content: center;
+    padding-left: 28px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    transform: none;
+}
+
+.booking-form .btn-primary::before,
+.booking-form .btn-primary::after {
+    display: none;
+}
+
+.booking-form .btn-primary:hover {
+    background-color: #e8e8e8;
+    transform: translateY(-2px);
+    padding-left: 28px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.booking-success {
+    margin-top: 12px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background-color: rgba(78, 195, 217, 0.12);
+    border: 1px solid rgba(78, 195, 217, 0.4);
+    color: #4ec3d9;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.booking-right h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #4ec3d9;
+    margin-bottom: 32px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-item:last-of-type {
+    border-bottom: none;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.contact-value {
+    font-size: 1.05rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    transition: color 0.2s;
+}
+
+a.contact-value:hover {
+    color: #4ec3d9;
+}
+
+/* ===== КЛИКАБЕЛЬНЫЙ АДРЕС ===== */
+.contact-address {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    padding-bottom: 6px;
+    padding-right: 4px;
+    transition: color 0.25s ease;
+}
+
+.contact-address::before {
+    content: '↗';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #4ec3d9;
+    opacity: 0.7;
+    transform: translateY(-1px);
+    transition: all 0.25s ease;
+}
+
+.contact-address::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background: linear-gradient(
+            90deg,
+            #4ec3d9 0%,
+            rgba(78, 195, 217, 0.3) 100%
+    );
+    transition: all 0.3s ease;
+    transform-origin: left;
+}
+
+.contact-address:hover {
+    color: #4ec3d9;
+}
+
+.contact-address:hover::before {
+    opacity: 1;
+    transform: translateY(-3px) translateX(2px);
+}
+
+.contact-address:hover::after {
+    height: 2px;
+    background: linear-gradient(
+            90deg,
+            #4ec3d9 0%,
+            #ffffff 100%
+    );
+    box-shadow: 0 0 8px rgba(78, 195, 217, 0.6);
+}
+
+/* ===== КНОПКИ СВЯЗИ (одна строка) ===== */
+.contact-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    margin-top: 24px;
+}
+
+.btn-contact {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    border: 1.3px solid transparent;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-contact.max {
+    background-color: transparent;
+    border-color: #3b8cff;
+    color: #3b8cff;
+}
+
+.btn-contact.max:hover {
+    background-color: #3b8cff;
+    color: #0d0d0d;
+}
+
+.btn-contact.whatsapp {
+    background-color: transparent;
+    border-color: #25d366;
+    color: #25d366;
+}
+
+.btn-contact.whatsapp:hover {
+    background-color: #25d366;
+    color: #0d0d0d;
+}
+
+.btn-contact.telegram {
+    background-color: transparent;
+    border-color: #4ec3d9;
+    color: #4ec3d9;
+}
+
+.btn-contact.telegram:hover {
+    background-color: #4ec3d9;
+    color: #0d0d0d;
+}
+
+.btn-contact.call {
+    background-color: #ffffff;
+    color: #1f5d6b;
+}
+
+.btn-contact.call:hover {
+    background-color: #4ec3d9;
+    color: #0d0d0d;
+}

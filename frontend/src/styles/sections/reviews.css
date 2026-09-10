@@ -1,0 +1,79 @@
+/* ===== СЕКЦИЯ ОТЗЫВЫ ===== */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.review-card {
+    padding: 28px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    border-color: rgba(78, 195, 217, 0.35);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4ec3d9, #1f5d6b);
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.review-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.review-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+
+.review-car {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.review-stars {
+    font-size: 0.95rem;
+    color: #ffb547;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.review-date {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,28 @@
+/* ===== СБРОС ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'Roboto Condensed', Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    background-color: #1c1c1c;
+}
+
+body {
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.App {
+    min-height: 100vh;
+    background-color: #1c1c1c;
+}

@@ -1,0 +1,327 @@
+/* ===== ПЛАНШЕТ ===== */
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: auto;
+    }
+
+    .left-sidebar {
+        min-height: 100px;
+        padding: 16px;
+        border-right: none;
+        border-bottom: 1px solid #3a3a3a;
+    }
+
+    .left-text {
+        writing-mode: horizontal-tb;
+        transform: none;
+        flex-direction: row;
+        gap: 12px;
+        align-items: baseline;
+    }
+
+    .left-text-main {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+    }
+
+    .left-text-sub {
+        font-size: 0.7rem;
+    }
+
+    .center-content {
+        padding: 40px 30px;
+        overflow: visible;
+    }
+
+    .service-logo {
+        width: 180px;
+        margin-bottom: 26px;
+    }
+
+    .right-sidebar {
+        min-height: 350px;
+    }
+
+    .carousel-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-arrow svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .arrow-prev { left: 14px; }
+    .arrow-next { right: 14px; }
+
+    .content-section {
+        padding: 70px 30px;
+    }
+
+    .section-head h2,
+    .booking-left h2 {
+        font-size: 1.7rem;
+    }
+
+    .booking-inner {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .services-categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .modal-window {
+        max-width: 90vw;
+    }
+
+    .modal-head {
+        padding: 26px 24px 16px;
+    }
+
+    .modal-head h3 {
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 10px 24px;
+    }
+
+    .modal-foot {
+        padding: 16px 24px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .modal-foot-btn {
+        width: 100%;
+    }
+
+    .promo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== МОБИЛЬНЫЙ ===== */
+@media (max-width: 600px) {
+    .left-text-main {
+        font-size: 1.2rem;
+        letter-spacing: 1.5px;
+    }
+
+    .left-text-sub {
+        font-size: 0.6rem;
+    }
+
+    .center-content {
+        padding: 30px 20px;
+    }
+
+    .service-logo {
+        width: 150px;
+        margin-bottom: 22px;
+    }
+
+    .center-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+        padding: 12px 16px 12px 28px;
+    }
+
+    .btn.btn-primary,
+    .btn.btn-primary:hover {
+        transform: none;
+    }
+
+    .btn-highlight.btn-primary {
+        transform: none;
+    }
+
+    .carousel-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .carousel-arrow svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .arrow-prev { left: 8px; }
+    .arrow-next { right: 8px; }
+
+    .content-section {
+        padding: 50px 20px;
+    }
+
+    .section-head {
+        margin-bottom: 32px;
+    }
+
+    .section-head h2,
+    .booking-left h2 {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+
+    .section-sub,
+    .booking-sub {
+        font-size: 0.9rem;
+    }
+
+    .booking-form input {
+        padding: 16px 20px;
+        font-size: 0.95rem;
+    }
+
+    .booking-form .btn-primary {
+        padding: 18px 22px;
+        font-size: 1rem;
+    }
+
+    .contact-buttons {
+        flex-wrap: wrap;
+    }
+
+    .btn-contact {
+        flex: 1 1 calc(50% - 4px);
+        min-width: calc(50% - 4px);
+    }
+
+    .services-categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .service-category-btn {
+        padding: 20px 10px;
+        min-height: 130px;
+    }
+
+    .service-category-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.8px;
+    }
+
+    .service-category-count {
+        font-size: 0.68rem;
+    }
+
+    .modal-overlay {
+        padding: 12px;
+    }
+
+    .modal-window {
+        max-height: 92vh;
+        border-radius: 18px;
+    }
+
+    .modal-head {
+        padding: 24px 20px 14px;
+    }
+
+    .modal-head h3 {
+        font-size: 1.2rem;
+        letter-spacing: 1.5px;
+    }
+
+    .modal-sub {
+        font-size: 0.75rem;
+    }
+
+    .modal-close {
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .modal-body {
+        padding: 8px 20px;
+    }
+
+    .modal-item {
+        padding: 14px 0;
+        gap: 12px;
+    }
+
+    .modal-item-name {
+        font-size: 0.92rem;
+    }
+
+    .modal-item-price {
+        font-size: 1rem;
+    }
+
+    .modal-foot {
+        padding: 14px 20px;
+    }
+
+    .modal-foot-text {
+        font-size: 0.78rem;
+    }
+
+    .promo-card {
+        padding: 30px 24px 26px;
+    }
+
+    .promo-tag {
+        position: static;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-size: 1rem;
+    }
+
+    .promo-title {
+        max-width: 100%;
+    }
+
+    .review-top {
+        flex-wrap: wrap;
+    }
+
+    .review-stars {
+        flex-basis: 100%;
+        margin-top: 8px;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 24px;
+        margin-bottom: 40px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .faq-item {
+        padding: 18px 20px;
+    }
+
+    .faq-question {
+        font-size: 0.95rem;
+    }
+}

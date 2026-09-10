@@ -1,0 +1,52 @@
+/* ===== ОБЩАЯ СЕКЦИЯ КОНТЕНТА ===== */
+.content-section {
+    position: relative;
+    padding: 90px 60px;
+    background-color: #0d0d0d;
+    border-top: 1px solid #2a2a2a;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.content-section::before {
+    display: none;
+}
+
+.section-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-head {
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.section-head h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+.section-sub {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 640px;
+    line-height: 1.5;
+}
