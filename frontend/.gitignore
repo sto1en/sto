@@ -18,3 +18,5 @@ frontend/node_modules/
 
 # System
 Thumbs.db
+
+backend/src/main/resources/application.properties
