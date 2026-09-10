@@ -100,7 +100,6 @@ body {
   overflow-y: auto;
 }
 
-/* Логотип — по центру, увеличен */
 .service-logo {
   width: 220px;
   height: auto;
@@ -705,28 +704,110 @@ a.contact-value:hover {
   color: #4ec3d9;
 }
 
+/* ===== КЛИКАБЕЛЬНЫЙ АДРЕС ===== */
+.contact-address {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  text-decoration: none;
+  padding-bottom: 6px;
+  padding-right: 4px;
+  transition: color 0.25s ease;
+}
+
+.contact-address::before {
+  content: '↗';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  order: 2;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #4ec3d9;
+  opacity: 0.7;
+  transform: translateY(-1px);
+  transition: all 0.25s ease;
+}
+
+.contact-address::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: linear-gradient(
+          90deg,
+          #4ec3d9 0%,
+          rgba(78, 195, 217, 0.3) 100%
+  );
+  transition: all 0.3s ease;
+  transform-origin: left;
+}
+
+.contact-address:hover {
+  color: #4ec3d9;
+}
+
+.contact-address:hover::before {
+  opacity: 1;
+  transform: translateY(-3px) translateX(2px);
+}
+
+.contact-address:hover::after {
+  height: 2px;
+  background: linear-gradient(
+          90deg,
+          #4ec3d9 0%,
+          #ffffff 100%
+  );
+  box-shadow: 0 0 8px rgba(78, 195, 217, 0.6);
+}
+
+/* ===== КНОПКИ СВЯЗИ (одна строка) ===== */
 .contact-buttons {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
   margin-top: 24px;
 }
 
 .btn-contact {
-  padding: 14px 24px;
-  border-radius: 40px;
-  font-size: 0.85rem;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 30px;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  border: 1.5px solid transparent;
+  border: 1.3px solid transparent;
   transition: all 0.25s ease;
   cursor: pointer;
   font-family: inherit;
-  flex: 1;
-  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-contact.max {
+  background-color: transparent;
+  border-color: #3b8cff;
+  color: #3b8cff;
+}
+
+.btn-contact.max:hover {
+  background-color: #3b8cff;
+  color: #0d0d0d;
 }
 
 .btn-contact.whatsapp {
@@ -761,30 +842,50 @@ a.contact-value:hover {
   color: #0d0d0d;
 }
 
-/* ===== СЕКЦИЯ УСЛУГИ ===== */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+/* ===== СЕКЦИЯ УСЛУГИ: КНОПКИ КАТЕГОРИЙ ===== */
+.services-loading,
+.services-error {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 20px 0;
+  text-align: center;
 }
 
-.service-card {
+.services-error {
+  color: #ff6b6b;
+}
+
+.services-categories {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.service-category-btn {
   position: relative;
-  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 14px;
   background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(78, 195, 217, 0.25);
   border-radius: 18px;
+  font-family: inherit;
+  cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
+  min-height: 150px;
 }
 
-.service-card::before {
+.service-category-btn::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
           135deg,
-          rgba(78, 195, 217, 0.08) 0%,
+          rgba(78, 195, 217, 0.12) 0%,
           transparent 60%
   );
   opacity: 0;
@@ -792,58 +893,248 @@ a.contact-value:hover {
   pointer-events: none;
 }
 
-.service-card:hover {
+.service-category-btn:hover {
   transform: translateY(-6px);
-  border-color: rgba(78, 195, 217, 0.4);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border-color: #4ec3d9;
+  box-shadow:
+          0 16px 40px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(78, 195, 217, 0.35),
+          inset 0 0 24px rgba(78, 195, 217, 0.1);
 }
 
-.service-card:hover::before {
+.service-category-btn:hover::before {
   opacity: 1;
 }
 
-.service-icon {
-  font-size: 2.2rem;
-  margin-bottom: 18px;
-  line-height: 1;
-}
-
-.service-title {
-  font-size: 1.25rem;
+.service-category-title {
+  position: relative;
+  z-index: 1;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.25;
+  word-break: break-word;
+  hyphens: auto;
 }
 
-.service-desc {
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.55;
-  margin-bottom: 22px;
-  min-height: 66px;
+.service-category-count {
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.service-footer {
+/* ===== МОДАЛЬНОЕ ОКНО УСЛУГ ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.25s ease;
 }
 
-.service-price {
-  font-size: 1.1rem;
+.modal-window {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+          180deg,
+          #1f5d6b 0%,
+          #1a4f5c 100%
+  );
+  border: 1px solid rgba(78, 195, 217, 0.35);
+  border-radius: 22px;
+  box-shadow:
+          0 24px 70px rgba(0, 0, 0, 0.7),
+          0 0 0 1px rgba(78, 195, 217, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  animation: modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  padding: 0;
+}
+
+.modal-close:hover {
+  background-color: #4ec3d9;
+  border-color: #4ec3d9;
+  color: #0d0d0d;
+  transform: rotate(90deg);
+}
+
+.modal-head {
+  padding: 32px 32px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-head h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.modal-sub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.modal-body {
+  padding: 12px 32px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: rgba(78, 195, 217, 0.3);
+  border-radius: 3px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(78, 195, 217, 0.6);
+}
+
+.modal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.2s ease;
+}
+
+.modal-item:last-child {
+  border-bottom: none;
+}
+
+.modal-item:hover {
+  padding-left: 8px;
+}
+
+.modal-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.modal-item-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  line-height: 1.35;
+}
+
+.modal-item-duration {
+  display: none;
+}
+
+.modal-item-price {
+  font-size: 1.15rem;
   font-weight: 700;
   color: #4ec3d9;
   letter-spacing: 0.5px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.service-time {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 1px;
+.modal-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-foot-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.modal-foot-btn {
+  padding: 12px 28px;
+  border-radius: 40px;
+  background-color: #ffffff;
+  color: #1f5d6b;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.modal-foot-btn:hover {
+  background-color: #4ec3d9;
+  color: #0d0d0d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(78, 195, 217, 0.35);
 }
 
 /* ===== СЕКЦИЯ АКЦИИ ===== */
@@ -1197,8 +1488,34 @@ a.contact-value:hover {
     gap: 50px;
   }
 
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .services-categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .modal-window {
+    max-width: 90vw;
+  }
+
+  .modal-head {
+    padding: 26px 24px 16px;
+  }
+
+  .modal-head h3 {
+    font-size: 1.5rem;
+  }
+
+  .modal-body {
+    padding: 10px 24px;
+  }
+
+  .modal-foot {
+    padding: 16px 24px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-foot-btn {
+    width: 100%;
   }
 
   .promo-grid {
@@ -1300,23 +1617,86 @@ a.contact-value:hover {
   }
 
   .contact-buttons {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   .btn-contact {
-    width: 100%;
+    flex: 1 1 calc(50% - 4px);
+    min-width: calc(50% - 4px);
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
+  .services-categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
-  .service-card {
-    padding: 26px 22px;
+  .service-category-btn {
+    padding: 20px 10px;
+    min-height: 130px;
   }
 
-  .service-desc {
-    min-height: auto;
+  .service-category-title {
+    font-size: 0.9rem;
+    letter-spacing: 0.8px;
+  }
+
+  .service-category-count {
+    font-size: 0.68rem;
+  }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-window {
+    max-height: 92vh;
+    border-radius: 18px;
+  }
+
+  .modal-head {
+    padding: 24px 20px 14px;
+  }
+
+  .modal-head h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+
+  .modal-sub {
+    font-size: 0.75rem;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    padding: 8px 20px;
+  }
+
+  .modal-item {
+    padding: 14px 0;
+    gap: 12px;
+  }
+
+  .modal-item-name {
+    font-size: 0.92rem;
+  }
+
+  .modal-item-price {
+    font-size: 1rem;
+  }
+
+  .modal-foot {
+    padding: 14px 20px;
+  }
+
+  .modal-foot-text {
+    font-size: 0.78rem;
   }
 
   .promo-card {

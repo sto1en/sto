@@ -96,6 +96,15 @@ const BookingSection = () => {
     const [form, setForm] = useState({ name: '', phone: '', service: '' });
     const [sent, setSent] = useState(false);
 
+    const address = '2-й Вязовский пр., 4А, стр. 4, Москва';
+    const yandexMapsUrl =
+        'https://yandex.ru/maps/org/vyazovskiy/77363803301/?ll=37.764042%2C55.719237&z=17';
+
+    const phoneDisplay = '+7 (933) 408-12-44';
+    const phoneLink = 'tel:+79334081244';
+    const whatsappLink = 'https://wa.me/79334081244';
+    const maxLink = 'https://max.ru/';
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
@@ -159,16 +168,21 @@ const BookingSection = () => {
 
                     <div className="contact-item">
                         <span className="contact-label">ТЕЛЕФОН</span>
-                        <a href="tel:+79001234567" className="contact-value">
-                            +7 (900) 123-45-67
+                        <a href={phoneLink} className="contact-value">
+                            {phoneDisplay}
                         </a>
                     </div>
 
                     <div className="contact-item">
                         <span className="contact-label">АДРЕС</span>
-                        <span className="contact-value">
-              2-й Вязовский пр., 4А, стр. 4, Москва
-            </span>
+                        <a
+                            href={yandexMapsUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="contact-value contact-address"
+                        >
+                            {address}
+                        </a>
                     </div>
 
                     <div className="contact-item">
@@ -181,7 +195,15 @@ const BookingSection = () => {
 
                     <div className="contact-buttons">
                         <a
-                            href="https://wa.me/79001234567"
+                            href={maxLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-contact max"
+                        >
+                            MAX
+                        </a>
+                        <a
+                            href={whatsappLink}
                             target="_blank"
                             rel="noreferrer"
                             className="btn-contact whatsapp"
@@ -196,7 +218,7 @@ const BookingSection = () => {
                         >
                             TELEGRAM
                         </a>
-                        <a href="tel:+79001234567" className="btn-contact call">
+                        <a href={phoneLink} className="btn-contact call">
                             ПОЗВОНИТЬ
                         </a>
                     </div>
@@ -206,52 +228,84 @@ const BookingSection = () => {
     );
 };
 
+/* ================= МОДАЛЬНОЕ ОКНО УСЛУГ ================= */
+const ServiceModal = ({ category, onClose }) => {
+    useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        document.addEventListener('keydown', handleEsc);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', handleEsc);
+            document.body.style.overflow = '';
+        };
+    }, [onClose]);
+
+    if (!category) return null;
+
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-window" onClick={(e) => e.stopPropagation()}>
+                <button className="modal-close" onClick={onClose} aria-label="Закрыть">
+                    ×
+                </button>
+
+                <div className="modal-head">
+                    <h3>{category.title}</h3>
+                    <p className="modal-sub">
+                        {category.items.length} услуг · актуальные цены
+                    </p>
+                </div>
+
+                <div className="modal-body">
+                    {category.items.map((item, i) => (
+                        <div className="modal-item" key={i}>
+                            <div className="modal-item-info">
+                                <span className="modal-item-name">{item.name}</span>
+                                <span className="modal-item-duration">{item.duration}</span>
+                            </div>
+                            <span className="modal-item-price">{item.price}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="modal-foot">
+          <span className="modal-foot-text">
+            Точную стоимость уточняйте по телефону
+          </span>
+                    <button className="modal-foot-btn" onClick={onClose}>
+                        ПОНЯТНО
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 /* ================= СЕКЦИЯ: УСЛУГИ ================= */
 const ServicesSection = () => {
-    const services = [
-        {
-            icon: '🛢️',
-            title: 'Замена масла',
-            desc: 'Замена моторного масла и фильтров. Работаем с любыми марками, используем только оригинальные расходники.',
-            price: 'от 1 500 ₽',
-            time: '30–40 мин',
-        },
-        {
-            icon: '🔧',
-            title: 'Диагностика',
-            desc: 'Полная компьютерная диагностика двигателя, подвески, тормозной системы. Выявим причину неисправности за один визит.',
-            price: 'от 1 000 ₽',
-            time: '40–60 мин',
-        },
-        {
-            icon: '🛞',
-            title: 'Шиномонтаж',
-            desc: 'Сезонная смена шин, балансировка, ремонт проколов и порезов. Работаем с R13–R22.',
-            price: 'от 2 000 ₽',
-            time: '40–90 мин',
-        },
-        {
-            icon: '⚙️',
-            title: 'Ремонт двигателя',
-            desc: 'Капитальный и текущий ремонт ДВС, замена ГРМ, устранение течей и посторонних шумов.',
-            price: 'от 8 000 ₽',
-            time: 'от 1 дня',
-        },
-        {
-            icon: '🛑',
-            title: 'Тормозная система',
-            desc: 'Замена колодок, дисков, суппортов, прокачка тормозов. Гарантия на работы — 1 год.',
-            price: 'от 2 500 ₽',
-            time: '1–2 часа',
-        },
-        {
-            icon: '❄️',
-            title: 'Кондиционер',
-            desc: 'Заправка фреоном, диагностика утечек, замена компрессора. Работаем с R134a и R1234yf.',
-            price: 'от 2 500 ₽',
-            time: '1–2 часа',
-        },
-    ];
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [activeCategory, setActiveCategory] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/services')
+            .then((res) => {
+                if (!res.ok) throw new Error('Ошибка загрузки');
+                return res.json();
+            })
+            .then((data) => {
+                setCategories(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError('Не удалось загрузить услуги');
+                setLoading(false);
+            });
+    }, []);
 
     return (
         <div className="section-inner">
@@ -259,23 +313,36 @@ const ServicesSection = () => {
                 <h2>НАШИ УСЛУГИ</h2>
                 <p className="section-sub">
                     Полный спектр работ по обслуживанию и ремонту автомобилей.
-                    Гарантия на все виды работ — 12 месяцев.
+                    Выберите категорию, чтобы посмотреть цены.
                 </p>
             </div>
 
-            <div className="services-grid">
-                {services.map((s, i) => (
-                    <div className="service-card" key={i}>
-                        <div className="service-icon">{s.icon}</div>
-                        <h3 className="service-title">{s.title}</h3>
-                        <p className="service-desc">{s.desc}</p>
-                        <div className="service-footer">
-                            <span className="service-price">{s.price}</span>
-                            <span className="service-time">{s.time}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            {loading && <p className="services-loading">Загрузка услуг...</p>}
+            {error && <p className="services-error">{error}</p>}
+
+            {!loading && !error && (
+                <div className="services-categories">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.key}
+                            className="service-category-btn"
+                            onClick={() => setActiveCategory(cat)}
+                        >
+                            <span className="service-category-title">{cat.title}</span>
+                            <span className="service-category-count">
+                {cat.items.length} услуг
+              </span>
+                        </button>
+                    ))}
+                </div>
+            )}
+
+            {activeCategory && (
+                <ServiceModal
+                    category={activeCategory}
+                    onClose={() => setActiveCategory(null)}
+                />
+            )}
         </div>
     );
 };
