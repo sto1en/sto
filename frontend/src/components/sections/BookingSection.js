@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 
 const BookingSection = () => {
-    const [form, setForm] = useState({ name: '', phone: '', service: '' });
+    const [form, setForm] = useState({
+        name: '',
+        phone: '',
+        service: '',
+        car: '',
+    });
     const [sent, setSent] = useState(false);
+    const [error, setError] = useState(false);
 
     const address = '2-й Вязовский пр., 4А, стр. 4, Москва';
     const yandexMapsUrl =
@@ -17,12 +23,29 @@ const BookingSection = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.name.trim() || !form.phone.trim()) return;
-        setSent(true);
-        setTimeout(() => setSent(false), 4000);
-        setForm({ name: '', phone: '', service: '' });
+
+        try {
+            const response = await fetch('http://localhost:8080/api/booking', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form),
+            });
+
+            if (response.ok) {
+                setSent(true);
+                setError(false);
+                setTimeout(() => setSent(false), 5000);
+                setForm({ name: '', phone: '', service: '', car: '' });
+            } else {
+                setError(true);
+            }
+        } catch (err) {
+            console.error('Ошибка отправки:', err);
+            setError(true);
+        }
     };
 
     return (
@@ -54,6 +77,13 @@ const BookingSection = () => {
                         />
                         <input
                             type="text"
+                            name="car"
+                            placeholder="Автомобиль (марка, модель)"
+                            value={form.car}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="text"
                             name="service"
                             placeholder="Услуга (необязательно)"
                             value={form.service}
@@ -66,6 +96,19 @@ const BookingSection = () => {
                         {sent && (
                             <p className="booking-success">
                                 ✓ Заявка отправлена! Мы свяжемся с вами.
+                            </p>
+                        )}
+
+                        {error && (
+                            <p
+                                className="booking-success"
+                                style={{
+                                    background: 'rgba(255,107,107,0.12)',
+                                    borderColor: 'rgba(255,107,107,0.4)',
+                                    color: '#ff6b6b',
+                                }}
+                            >
+                                ✕ Не удалось отправить. Позвоните нам.
                             </p>
                         )}
                     </form>
