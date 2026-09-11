@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 const BookingSection = () => {
     const [form, setForm] = useState({
         name: '',
-        phone: '',
-        service: '',
+        phoneNumber: '',
+        carService: '',
         car: '',
     });
     const [sent, setSent] = useState(false);
@@ -14,10 +14,13 @@ const BookingSection = () => {
     const yandexMapsUrl =
         'https://yandex.ru/maps/org/vyazovskiy/77363803301/?ll=37.764042%2C55.719237&z=17';
 
-    const phoneDisplay = '+7 (933) 408-12-44';
-    const phoneLink = 'tel:+79334081244';
-    const whatsappLink = 'https://wa.me/79334081244';
+    const phoneDisplay = '+7 (995) 924-04-26';
+    const phoneLink = 'tel:+79959240426';
+    const whatsappLink = 'https://wa.me/79959240426';
     const maxLink = 'https://max.ru/';
+    const avitoLink = 'https://www.avito.ru/user/your_profile';
+    const telegramLink = 'https://t.me/STOVyazovskiy';
+    const telegramBotLink = 'https://t.me/sto_vyazovsky_bot';
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -25,10 +28,10 @@ const BookingSection = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!form.name.trim() || !form.phone.trim()) return;
+        if (!form.name.trim() || !form.phoneNumber.trim()) return;
 
         try {
-            const response = await fetch('http://localhost:8080/api/booking', {
+            const response = await fetch('/api/booking', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form),
@@ -38,7 +41,7 @@ const BookingSection = () => {
                 setSent(true);
                 setError(false);
                 setTimeout(() => setSent(false), 5000);
-                setForm({ name: '', phone: '', service: '', car: '' });
+                setForm({ name: '', phoneNumber: '', carService: '', car: '' });
             } else {
                 setError(true);
             }
@@ -69,9 +72,9 @@ const BookingSection = () => {
                         />
                         <input
                             type="tel"
-                            name="phone"
+                            name="phoneNumber"
                             placeholder="Телефон"
-                            value={form.phone}
+                            value={form.phoneNumber}
                             onChange={handleChange}
                             required
                         />
@@ -84,9 +87,9 @@ const BookingSection = () => {
                         />
                         <input
                             type="text"
-                            name="service"
+                            name="carService"
                             placeholder="Услуга (необязательно)"
-                            value={form.service}
+                            value={form.carService}
                             onChange={handleChange}
                         />
                         <button type="submit" className="btn btn-primary">
@@ -119,7 +122,10 @@ const BookingSection = () => {
 
                     <div className="contact-item">
                         <span className="contact-label">ТЕЛЕФОН</span>
-                        <a href={phoneLink} className="contact-value">
+                        <a
+                            href={phoneLink}
+                            className="contact-value contact-link contact-link-phone"
+                        >
                             {phoneDisplay}
                         </a>
                     </div>
@@ -130,7 +136,7 @@ const BookingSection = () => {
                             href={yandexMapsUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="contact-value contact-address"
+                            className="contact-value contact-link contact-link-address"
                         >
                             {address}
                         </a>
@@ -139,9 +145,9 @@ const BookingSection = () => {
                     <div className="contact-item">
                         <span className="contact-label">ГРАФИК</span>
                         <span className="contact-value">
-              Пн–Сб: 9:00 – 20:00<br />
-              Вс: выходной
-            </span>
+                            Пн–Сб: 11:00 – 20:00<br />
+                            Вс: выходной
+                        </span>
                     </div>
 
                     <div className="contact-buttons">
@@ -162,15 +168,28 @@ const BookingSection = () => {
                             WHATSAPP
                         </a>
                         <a
-                            href="https://t.me/your_profile"
+                            href={telegramLink}
                             target="_blank"
                             rel="noreferrer"
                             className="btn-contact telegram"
                         >
                             TELEGRAM
                         </a>
-                        <a href={phoneLink} className="btn-contact call">
-                            ПОЗВОНИТЬ
+                        <a
+                            href={telegramBotLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-contact telegram-bot"
+                        >
+                            БОТ
+                        </a>
+                        <a
+                            href={avitoLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-contact avito"
+                        >
+                            АВИТО
                         </a>
                     </div>
                 </div>

@@ -11,20 +11,28 @@ const navItems = [
     { key: 'faq', label: 'ВОПРОСЫ' },
 ];
 
+const REVIEWS_URL =
+    'https://yandex.ru/maps/org/vyazovskiy/77363803301/reviews/?ll=37.764042%2C55.719237&z=17';
+
 const NavMenu = ({ activeSection, onNav }) => {
     return (
         <div className="center-content">
             <img src={logo} alt="СТО Вязовский" className="service-logo" />
 
-            <h2>
+            <h2 className="sto-title">
                 АВТОСЕРВИС,
                 <br />
                 КОТОРОМУ ДОВЕРЯЮТ
             </h2>
 
-            <p className="sto-info">
-                Более 250 отзывов · Рейтинг 5.0 на Яндекс Картах
-            </p>
+            <a
+                href={REVIEWS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="sto-info-link"
+            >
+                Более 250 отзывов <span className="sto-info-sep">•</span> Рейтинг 5.0 на Яндекс Картах
+            </a>
 
             <div className="buttons-group">
                 {navItems.map((item) => (

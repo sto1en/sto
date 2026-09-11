@@ -1,24 +1,41 @@
 package com.example.sto.model;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Entity
+@Table(name = "service_items")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServiceItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String price;
-    private String duration;
 
-    public ServiceItem() {}
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-    public ServiceItem(String name, String price, String duration) {
+    @Column(name = "category_id", nullable = false, insertable = false, updatable = false)
+    private Long categoryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private ServiceCategory category;
+
+    public ServiceItem(String name, String price) {
         this.name = name;
         this.price = price;
-        this.duration = duration;
     }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getPrice() { return price; }
-    public void setPrice(String price) { this.price = price; }
-
-    public String getDuration() { return duration; }
-    public void setDuration(String duration) { this.duration = duration; }
 }

@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ServiceModal = ({ category, onClose }) => {
+    const [expandedIndex, setExpandedIndex] = useState(null);
+
     useEffect(() => {
         const handleEsc = (e) => {
             if (e.key === 'Escape') onClose();
@@ -14,6 +16,10 @@ const ServiceModal = ({ category, onClose }) => {
     }, [onClose]);
 
     if (!category) return null;
+
+    const toggle = (i) => {
+        setExpandedIndex(expandedIndex === i ? null : i);
+    };
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -30,15 +36,45 @@ const ServiceModal = ({ category, onClose }) => {
                 </div>
 
                 <div className="modal-body">
-                    {category.items.map((item, i) => (
-                        <div className="modal-item" key={i}>
-                            <div className="modal-item-info">
-                                <span className="modal-item-name">{item.name}</span>
-                                <span className="modal-item-duration">{item.duration}</span>
+                    {category.items.map((item, i) => {
+                        const hasDescription =
+                            item.description && item.description.trim().length > 0;
+                        const isOpen = expandedIndex === i;
+
+                        return (
+                            <div
+                                className={`modal-item-wrapper ${
+                                    hasDescription ? 'clickable' : ''
+                                } ${isOpen ? 'open' : ''}`}
+                                key={i}
+                            >
+                                <div
+                                    className="modal-item"
+                                    onClick={() => hasDescription && toggle(i)}
+                                >
+                                    <span className="modal-item-name">{item.name}</span>
+                                    <div className="modal-item-right">
+                                        <span className="modal-item-price">{item.price}</span>
+                                        {hasDescription && (
+                                            <span
+                                                className={`modal-item-arrow ${
+                                                    isOpen ? 'rotated' : ''
+                                                }`}
+                                            >
+                        ▼
+                      </span>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {hasDescription && isOpen && (
+                                    <div className="modal-item-description">
+                                        {item.description}
+                                    </div>
+                                )}
                             </div>
-                            <span className="modal-item-price">{item.price}</span>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 <div className="modal-foot">

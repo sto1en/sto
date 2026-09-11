@@ -8,7 +8,7 @@ const ServicesSection = () => {
     const [activeCategory, setActiveCategory] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/services')
+        fetch('/api/services')
             .then((res) => {
                 if (!res.ok) throw new Error('Ошибка загрузки');
                 return res.json();

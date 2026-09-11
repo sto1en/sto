@@ -136,12 +136,12 @@ a.contact-value:hover {
     color: #4ec3d9;
 }
 
-/* ===== КЛИКАБЕЛЬНЫЙ АДРЕС ===== */
-.contact-address {
+/* ===== КЛИКАБЕЛЬНЫЕ КОНТАКТЫ (адрес и телефон) ===== */
+.contact-link {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: #ffffff;
     text-decoration: none;
     padding-bottom: 6px;
@@ -149,22 +149,36 @@ a.contact-value:hover {
     transition: color 0.25s ease;
 }
 
-.contact-address::before {
-    content: '↗';
+/* Значок — общий для ::before */
+.contact-link::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    order: 2;
-    font-size: 1rem;
+    order: 0;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 1;
-    color: #4ec3d9;
-    opacity: 0.7;
+    opacity: 0.9;
     transform: translateY(-1px);
     transition: all 0.25s ease;
 }
 
-.contact-address::after {
+/* 📞 Трубка — только у телефона */
+.contact-link-phone::before {
+    content: '📞';
+    color: #4ec3d9;
+}
+
+/* ↗ Стрелка — только у адреса */
+.contact-link-address::before {
+    content: '↗';
+    font-size: 1.4rem;
+    color: #4ec3d9;
+    opacity: 0.85;
+}
+
+/* Полоска под текстом */
+.contact-link::after {
     content: '';
     position: absolute;
     left: 0;
@@ -180,16 +194,24 @@ a.contact-value:hover {
     transform-origin: left;
 }
 
-.contact-address:hover {
+.contact-link:hover {
     color: #4ec3d9;
 }
 
-.contact-address:hover::before {
+.contact-link:hover::before {
     opacity: 1;
-    transform: translateY(-3px) translateX(2px);
+    transform: translateY(-4px) translateX(3px);
 }
 
-.contact-address:hover::after {
+.contact-link-address:hover::before {
+    transform: translateY(-4px) translateX(3px);
+}
+
+.contact-link-phone:hover::before {
+    transform: translateY(-2px) scale(1.15);
+}
+
+.contact-link:hover::after {
     height: 2px;
     background: linear-gradient(
             90deg,
@@ -199,22 +221,23 @@ a.contact-value:hover {
     box-shadow: 0 0 8px rgba(78, 195, 217, 0.6);
 }
 
-/* ===== КНОПКИ СВЯЗИ (одна строка) ===== */
+/* ===== КНОПКИ СВЯЗИ ===== */
 .contact-buttons {
     display: flex;
-    gap: 8px;
+    gap: 5px;
     flex-wrap: nowrap;
     margin-top: 24px;
+    width: 100%;
 }
 
 .btn-contact {
-    flex: 1;
+    flex: 1 1 0;
     min-width: 0;
-    padding: 10px 12px;
+    padding: 9px 5px;
     border-radius: 30px;
-    font-size: 0.7rem;
+    font-size: 0.58rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
@@ -225,7 +248,7 @@ a.contact-value:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
+    min-height: 34px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -264,12 +287,26 @@ a.contact-value:hover {
     color: #0d0d0d;
 }
 
-.btn-contact.call {
-    background-color: #ffffff;
-    color: #1f5d6b;
+/* ===== БОТ — фиолетовый ===== */
+.btn-contact.telegram-bot {
+    background-color: transparent;
+    border-color: #a855f7;
+    color: #a855f7;
 }
 
-.btn-contact.call:hover {
-    background-color: #4ec3d9;
-    color: #0d0d0d;
+.btn-contact.telegram-bot:hover {
+    background-color: #a855f7;
+    color: #ffffff;
+}
+
+/* Авито — фирменный цвет */
+.btn-contact.avito {
+    background-color: transparent;
+    border-color: #00aaff;
+    color: #00aaff;
+}
+
+.btn-contact.avito:hover {
+    background-color: #00aaff;
+    color: #ffffff;
 }
